@@ -1,5 +1,28 @@
 import { read, json, walk, reporter } from './check-utils.mjs';
 import { frontendCiFindings } from './frontend-ci-check.mjs';
+import { resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
+
+// Explicit dispositions keep authorization separate from deployment success.
+// Scope the contract to H10; historical or unrelated text cannot grant approval.
+export function h10CutoverGateDocumented(markdown) {
+  const section = markdown.match(/^## H10\b[^\n]*\r?\n([\s\S]*?)(?=^## |$(?![\s\S]))/m)?.[1];
+  if (!section) return false;
+  const required = {
+    'Current replacement': 'Explicitly approved by CEO',
+    'Future production changes': 'Explicit CEO authorization required',
+    'Hosting plan': 'Existing Vercel Hobby; no paid upgrade',
+    'Hobby commercial-use restriction': 'Disclosed; deployment does not establish compliance',
+    'Old restaurant backups': 'Explicitly waived by CEO for project edfrlptpeuhjsgxdfwke; H7 retirement already executed',
+  };
+  const rows = [...section.matchAll(/^\|\s*([^|\r\n]+?)\s*\|\s*([^|\r\n]+?)\s*\|\s*$/gm)];
+  return Object.entries(required).every(([key, value]) => {
+    const matches = rows.filter(row => row[1].trim() === key);
+    return matches.length === 1 && matches[0][2].trim() === value;
+  });
+}
+
+function runSecurityChecks() {
 const {check,finish}=reporter();
 const config=json('vercel.json');
 const csp=config.headers.find(x=>x.source==='/(.*)').headers.find(x=>x.key==='Content-Security-Policy').value;
@@ -34,5 +57,10 @@ for (const file of walk('.github/workflows')) {
 }
 check('no executable inline scripts in marketing HTML',!/<script(?![^>]*\bsrc=)[^>]*>/.test(read('dist/app/ko.html')));
 check('reduced-motion preference honored',read('src/styles/marketing.css').includes('@media(prefers-reduced-motion:reduce)'));
-check('H10 cutover gate documented',read('README.md').includes('H10') && read('README.md').includes('Hobby') && read('README.md').includes('back up'));
+check('H10 cutover gate documented',h10CutoverGateDocumented(read('README.md')));
 finish('Marketing security validation');
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  runSecurityChecks();
+}

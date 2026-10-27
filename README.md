@@ -1,6 +1,6 @@
-# TAERYNEX official marketing website — local candidate
+# TAERYNEX official marketing website
 
-React 19 / Vite, retaining the existing Git history. Target provider: Vercel;
+React 19 / Vite, retaining the existing Git history. Deployed provider: Vercel;
 the website project was retired and renamed under H7, with post-read verification recorded. No backend client, analytics,
 forms, calculator, CMS, account registration or payment is part of this site.
 
@@ -20,7 +20,7 @@ The build explicitly disables `.env` loading. No environment variables are neede
 `npm run dev` is the Korean authoring shell; use the production preview for all
 prerendered locale and legal routes.
 
-- `/` is the proposed Korean marketing homepage, locally only.
+- `/` is the deployed Korean marketing homepage.
 - `/app/` retains an English homepage, `/app/{locale}` provides all 13 languages.
   Root and `/app/` canonicalize in metadata to `/app/ko` and `/app/en` respectively.
 - `/{locale}.html` and `/terms/{locale}.html` are exact frozen privacy 1.0.6
@@ -47,10 +47,28 @@ The verified commercial-use restriction was disclosed; successful deployment
 must not be reported as policy compliance. New legal terms or payment actions
 remain outside authorization. No new hosting project is required.
 
-Deploy only this accepted frontend through the existing Git production branch
-with normal fast-forward history. Public deployment/provider routing, legal
-hashes, HTTPS/security headers and domain verification are pending until their
-actual result is recorded. Preserve installed-app Pages legal compatibility.
+The following policy states are checked by `npm run security:check`:
+
+| H10 policy | Disposition |
+| --- | --- |
+| Current replacement | Explicitly approved by CEO |
+| Future production changes | Explicit CEO authorization required |
+| Hosting plan | Existing Vercel Hobby; no paid upgrade |
+| Hobby commercial-use restriction | Disclosed; deployment does not establish compliance |
+| Old restaurant backups | Explicitly waived by CEO for project edfrlptpeuhjsgxdfwke; H7 retirement already executed |
+
+Main verified commit `78d20b7` as Production Ready in the same existing Vercel
+project, renamed `taerynex-official-homepage`; Hobby is unchanged with no paid
+upgrade. `https://taerynex.com/` and `/app/ko` serve the accepted website with
+active DNS. Independent release checks passed 83/83 for the old alias and 9/9
+for the new origin / installed-app Pages compatibility, including public
+routing, legal hashes and HTTPS/security headers. These are Main/release-manager
+observations; they were not repeated during this bounded repair.
+
+The first hosted GitHub CI run failed at the stale H10 documentation gate
+(38/39 security checks passed). This repair does not establish a passing hosted
+CI result; the next actual run remains required. Preserve installed-app Pages
+legal compatibility and normal fast-forward history for future changes.
 Preserve the website project `edfrlptpeuhjsgxdfwke` and its platform schemas. The app backend `tlrwsabbgbtdcsoayceg` remains protected and outside
 the retirement scope. Do not replay historical restaurant migrations.
 
@@ -68,11 +86,12 @@ Fresh MCP readback: Storage objects 0, buckets 0, Auth users/identities/sessions
 all 0, Edge Functions 0. The app backend `tlrwsabbgbtdcsoayceg` was not changed.
 
 Evidence: `C:/projects/taerynex/artifacts/qa/homepage_20261027/H7-completed.json`.
-The existing 13-language local frontend is the TAERYNEX replacement candidate.
+The existing 13-language frontend is the deployed TAERYNEX replacement.
 No duplicate web accounts, new database content or server functions are needed
 for its approved static content. H7 cleanup does not eliminate compute charges.
-H8 final integration, H9 CEO acceptance and H10 approved commercial hosting /
-live deployment / domain cutover remain. No public deployment is claimed.
+H8 local integration was reviewed, H9 was explicitly accepted by the CEO, and
+the authorized H10 deployment/domain cutover was observed as described above.
+Deployment does not establish Hobby commercial-use policy compliance.
 The Android app is in closed testing; mailto inquiries do not enroll testers.
 iOS is in preparation without a promised date. Copy is localized using the
 accepted app introductions as reference; native editorial review remains a
@@ -96,7 +115,7 @@ Stale H7/backup handoff statements were repaired and independently rechecked.
 Actual desktop/mobile Chrome captures and H9 assessment are recorded in
 `C:/projects/taerynex/artifacts/qa/homepage_20261027/H9-presentation.json`.
 The viewport override was reset. The CEO explicitly accepted the H9 content and visual presentation.
-H10 execution uses the CEO-requested existing Hobby plan with the disclosed restriction; deployment/domain cutover,
-and actual public-provider routing/HTTPS/header verification. Physical website
+H10 used the CEO-requested existing Hobby plan with the disclosed restriction;
+actual public-provider routing/HTTPS/header results are recorded above. Physical website
 and audible-reader acceptance, native-language certification and field
 performance are not established by a local browser preview.
