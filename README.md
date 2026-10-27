@@ -1,8 +1,13 @@
 # TAERYNEX official marketing website
 
-React 19 / Vite, retaining the existing Git history. Deployed provider: Vercel;
-the website project was retired and renamed under H7, with post-read verification recorded. No backend client, analytics,
-forms, calculator, CMS, account registration or payment is part of this site.
+React 19 / Vite, retaining the existing Git history. Repository:
+https://github.com/sungjun7675/taerynex-official-homepage.
+The approved navy/gold marketing pages now include a 13-language contact form
+and a Korean operator inbox at `/admin/inquiries`. New backend code is prepared
+for the existing website-only Supabase project `edfrlptpeuhjsgxdfwke`.
+This local candidate is **not deployed**. Provider setup and real owner sign-in
+remain release gates; see [contact setup and boundaries](docs/website-contact.md).
+There is no website calculator, attachment upload, analytics or payment.
 
 ```sh
 npm ci
@@ -16,13 +21,19 @@ npm run preview:marketing
 
 Preview: http://127.0.0.1:4173/app/ko (the preview models the checked-in static
 routing/headers; it is not evidence of actual Vercel behavior).
-The build explicitly disables `.env` loading. No environment variables are needed.
+The build explicitly disables `.env` loading. Public contact configuration is
+explicit in `src/marketing/contact-config.js`; no service key belongs in Vite.
 `npm run dev` is the Korean authoring shell; use the production preview for all
 prerendered locale and legal routes.
 
 - `/` is the deployed Korean marketing homepage.
 - `/app/` retains an English homepage, `/app/{locale}` provides all 13 languages.
   Root and `/app/` canonicalize in metadata to `/app/ko` and `/app/en` respectively.
+- `/admin/inquiries` is a separate, noindex/no-store operator entry point.
+  Real Supabase email-link login uses the approved existing organization owner
+  (entered privately at login); the public reply/contact address stays `taerynex@gmail.com`.
+  Table and RPC access is denied to browser roles. The Edge inbox checks Auth
+  and the privately pinned owner UUID plus live session before returning data.
 - `/{locale}.html` and `/terms/{locale}.html` are exact frozen privacy 1.0.6
   and terms 1.0.4 files; Vercel `cleanUrls` also provides extensionless URLs.
   No SPA catch-all. Original `google2233132a77c14ffe.html` is unchanged.
@@ -34,7 +45,7 @@ prerendered locale and legal routes.
 - Old frontend source is archived under `legacy/restaurant/`, outside `src`.
   Old SQL remains under `supabase/` as historical migrations; the new H7 retirement
   migration was applied through Supabase MCP as reported by Main; see H7.
-  Only `src/App.jsx` → `src/marketing/` is in the new public module graph.
+  Current entry points are `src/main.jsx` and the separate `src/operator.jsx`.
   Old public restaurant images, icon and manifest are retired from served output.
   Legacy workflows are manual-only and explicitly guarded; never run them for
   this site. There is no automatic database migration or deployment workflow.
@@ -92,7 +103,7 @@ for its approved static content. H7 cleanup does not eliminate compute charges.
 H8 local integration was reviewed, H9 was explicitly accepted by the CEO, and
 the authorized H10 deployment/domain cutover was observed as described above.
 Deployment does not establish Hobby commercial-use policy compliance.
-The Android app is in closed testing; mailto inquiries do not enroll testers.
+The Android app is in closed testing; website inquiries do not enroll testers.
 iOS is in preparation without a promised date. Copy is localized using the
 accepted app introductions as reference; native editorial review remains a
 release consideration. No public installation, user-count or efficacy claim.

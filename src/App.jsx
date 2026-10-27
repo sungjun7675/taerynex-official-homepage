@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { locales, localeCodes } from './marketing/locales.js';
 import FeatureArt from './marketing/FeatureArt.jsx';
+import ContactForm from './marketing/ContactForm.jsx';
+import { contactCopy } from './marketing/contact-copy.js';
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 const sections = ['story', 'features', 'guide', 'support'];
 
 export default function App({ locale = 'ko' }) {
   const c = locales[locale];
+  const contact = contactCopy[locale];
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef(null);
   const menuPanel = useRef(null);
@@ -75,11 +78,12 @@ export default function App({ locale = 'ko' }) {
           </section>
           <section className="relationships-section section" aria-labelledby="relationships-title"><div className="shell relationship-layout"><div className="relationship-intro"><p className="eyebrow">{c.relationsLabel}</p><h2 id="relationships-title">{c.relationshipTitle}</h2><p>{c.relationshipIntro}</p><div className="relationship-orbits" aria-hidden="true"><span/><span/><i>緣</i></div></div><div className="relationship-list">{c.relationships.map(([name, description], i) => <article key={name}><span className="relationship-number">0{i + 1}</span><div><h3>{name}</h3><p>{description}</p></div><span className="relationship-mark" aria-hidden="true">{['♡', '⌂', '❋', '◇'][i]}</span></article>)}</div></div></section>
           <section id="guide" className="guide-section shell section" tabIndex="-1" aria-labelledby="guide-title"><div className="section-heading centered"><p className="eyebrow">{c.guideLabel}</p><h2 id="guide-title">{c.guideTitle}</h2><p>{c.guideIntro}</p></div><ol className="guide-steps">{c.steps.map(([title, text], i) => <li key={title}><span className="step-number">0{i + 1}</span><h3>{title}</h3><p>{text}</p></li>)}</ol><div className="privacy-note"><span className="privacy-symbol" aria-hidden="true">◇</span><p><strong>{c.privacyTitle}</strong> {c.privacyNote}</p></div></section>
-          <section id="support" className="faq-section shell section" tabIndex="-1" aria-labelledby="faq-title"><div className="faq-heading"><p className="eyebrow">{c.faqLabel}</p><h2 id="faq-title">{c.faqTitle}</h2><p>{c.faqIntro}</p><a className="text-link" href="mailto:taerynex@gmail.com">taerynex@gmail.com<Arrow /></a></div><div className="faq-list">{c.faq.map(([question, answer]) => <details key={question}><summary><span className="summary-text">{question}</span><span className="detail-plus" aria-hidden="true"><span>+</span></span></summary><p>{answer}</p></details>)}</div></section>
+          <section id="support" className="faq-section shell section" tabIndex="-1" aria-labelledby="faq-title"><div className="faq-heading"><p className="eyebrow">{c.faqLabel}</p><h2 id="faq-title">{c.faqTitle}</h2><p>{contact.intro}</p><a className="text-link" href="#contact">{contact.title}<Arrow /></a></div><div className="faq-list">{c.faq.map(([question, answer],i) => <details key={question}><summary><span className="summary-text">{question}</span><span className="detail-plus" aria-hidden="true"><span>+</span></span></summary><p>{i===0 ? `${c.status}. ${contact.intro}` : answer}</p></details>)}</div></section>
         </div>
-        <section id="join" className="join-section section" tabIndex="-1" aria-labelledby="join-title"><div className="join-moon" aria-hidden="true"/><div className="shell join-content"><img src="/brand/app-icon.webp" alt="TAERYNEX" className="app-icon" width="72" height="72" loading="lazy"/><p className="eyebrow">TAERYNEX</p><h2 id="join-title">{c.closingTitle}</h2><p>{c.closingText}</p><a className="button button-gold" href="mailto:taerynex@gmail.com">{c.mail}<Arrow /></a><div className="platform-status"><p>{c.status}</p><p>{c.ios}</p></div><p className="join-note">{c.joinNote}</p></div></section>
+        <section id="join" className="join-section section" tabIndex="-1" aria-labelledby="join-title"><div className="join-moon" aria-hidden="true"/><div className="shell join-content"><img src="/brand/app-icon.webp" alt="TAERYNEX" className="app-icon" width="72" height="72" loading="lazy"/><p className="eyebrow">TAERYNEX</p><h2 id="join-title">{c.closingTitle}</h2><p>{contact.intro}</p><a className="button button-gold" href="#contact">{contact.title}<Arrow /></a><div className="platform-status"><p>{c.status}</p><p>{c.ios}</p></div><p className="join-note">{c.joinNote}</p></div></section>
+        <ContactForm locale={locale}/>
       </main>
     </div>
-    <footer className="site-footer"><div className="shell"><div className="footer-top"><a className="wordmark" href={`/app/${locale}`}>TAERYNEX</a><p>{c.footer}</p><a className="back-top" href="#main" aria-label={c.backTop}>↑</a></div><div className="footer-bottom"><p>© {new Date().getUTCFullYear()} TAERYNEX · Lee Sungjun</p><nav aria-label={c.legalNavigation}><a href={`/${locale}.html`}>{c.privacy}</a><a href={`/terms/${locale}.html`}>{c.terms}</a><a href="mailto:taerynex@gmail.com">{c.contact}</a><button type="button" onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); languageSelect.current?.focus(); }}>{c.language}</button></nav></div><p className="legal-note">{c.notice}</p></div></footer>
+    <footer className="site-footer"><div className="shell"><div className="footer-top"><a className="wordmark" href={`/app/${locale}`}>TAERYNEX</a><p>{c.footer}</p><a className="back-top" href="#main" aria-label={c.backTop}>↑</a></div><div className="footer-bottom"><p>© {new Date().getUTCFullYear()} TAERYNEX · Lee Sungjun</p><nav aria-label={c.legalNavigation}><a href={`/${locale}.html`}>{c.privacy}</a><a href={`/terms/${locale}.html`}>{c.terms}</a><a href="#contact">{c.contact}</a><button type="button" onClick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); languageSelect.current?.focus(); }}>{c.language}</button></nav></div><p className="legal-note">{c.notice}</p></div></footer>
   </>;
 }

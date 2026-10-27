@@ -15,7 +15,7 @@ jobs:
       SUPABASE_PROJECT_REF: edfrlptpeuhjsgxdfwke
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
-      ALLOWED_ADMIN_ORIGINS: https://eulwangri-donghae-homepage.vercel.app,https://sungjun7675.github.io,http://localhost:4173,http://localhost:4175,http://127.0.0.1:4175
+      ALLOWED_ADMIN_ORIGINS: https://taerynex.com
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -2,3 +2,8 @@ project_id = "edfrlptpeuhjsgxdfwke"
 
 [functions.admin-review]
 verify_jwt = true
+
+# Intentionally anonymous intake; /inbox verifies Auth and live DB session.
+# No anon/authenticated role can execute either service RPC directly.
+[functions.website-contact]
+verify_jwt = false

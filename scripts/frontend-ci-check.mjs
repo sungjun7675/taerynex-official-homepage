@@ -10,7 +10,7 @@ export function frontendCiFindings() {
   const findings = [];
   const check = (name, ok) => findings.push({ name, pass: Boolean(ok) });
   check('read-only repository permission', JSON.stringify(workflow.permissions) === '{"contents":"read"}');
-  const paths = ['src/**', 'public/**', 'scripts/**', 'tests/**', 'index.html', 'package.json', 'package-lock.json', 'vite.config.js', 'vercel.json', '.gitattributes', '.vercelignore', '.github/workflows/**', 'docs/legal-integrity.json'];
+  const paths = ['src/**', 'public/**', 'scripts/**', 'tests/**', 'admin/**', 'supabase/functions/website-contact/**', 'supabase/migrations/**', 'supabase/setup/website-contact-*.sql', 'supabase/config.toml', 'index.html', 'package.json', 'package-lock.json', 'vite.config.js', 'vercel.json', '.gitattributes', '.vercelignore', '.github/workflows/**', 'docs/legal-integrity.json'];
   for (const event of ['push', 'pull_request']) check(`automatic ${event} covers frontend inputs`, paths.every(path => workflow.on?.[event]?.paths?.includes(path)) && !workflow.on[event].branches);
   check('no privileged event or workflow environment', Object.keys(workflow.on).every(key => ['push', 'pull_request', 'workflow_dispatch'].includes(key)) && !workflow.env);
   check('single enabled verification job', Object.keys(workflow.jobs).length === 1 && workflow.jobs.verify && !Object.hasOwn(workflow.jobs.verify, 'if'));
@@ -22,7 +22,7 @@ export function frontendCiFindings() {
   check('existing Node 22 toolchain', steps.find(step => step.uses === 'actions/setup-node@v4')?.with?.['node-version'] === 22);
   const expectedCommands = ['npm ci --ignore-scripts --no-audit --no-fund', 'node scripts/frontend-ci-check.mjs', 'npm run build', 'npm run launch:check', 'npm run security:check', 'npm run security:headers', 'npm test', 'npm audit --omit=dev --audit-level=moderate'];
   check('only ordered frontend checks, no deployment commands', JSON.stringify(steps.filter(step => step.run).map(step => step.run)) === JSON.stringify(expectedCommands));
-  check('no secrets, publishing, conditional skips or ignored failures', !/secrets\.|pull_request_target|vercel deploy|supabase|deploy-pages|pages:|id-token:/.test(source) && steps.every(step => !step.env && !step.if && !step['continue-on-error']));
+  check('no secrets, publishing, conditional skips or ignored failures', !/secrets\.|pull_request_target|vercel deploy|(?:npx\s+)?supabase\s+(?:deploy|db|functions|secrets|migration)|deploy-pages|pages:|id-token:/.test(source) && steps.every(step => !step.env && !step.if && !step['continue-on-error']));
   const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
   check('all referenced npm scripts exist', ['build', 'launch:check', 'security:check', 'security:headers', 'test'].every(script => typeof pkg.scripts[script] === 'string'));
   for (const file of ['deploy-pages.yml', 'deploy-supabase-security.yml', 'security-audit.yml']) {

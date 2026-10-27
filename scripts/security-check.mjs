@@ -2,6 +2,7 @@ import { read, json, walk, reporter } from './check-utils.mjs';
 import { frontendCiFindings } from './frontend-ci-check.mjs';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { headersForPath } from './preview-marketing.mjs';
 
 // Explicit dispositions keep authorization separate from deployment success.
 // Scope the contract to H10; historical or unrelated text cannot grant approval.
@@ -27,18 +28,26 @@ const {check,finish}=reporter();
 const config=json('vercel.json');
 const csp=config.headers.find(x=>x.source==='/(.*)').headers.find(x=>x.key==='Content-Security-Policy').value;
 check('strict self-hosted script policy',csp.includes("script-src 'self'") && !/unsafe-inline|unsafe-eval|wasm-unsafe-eval|https:\/\/\*/.test(csp));
-check('no unused remote connections',csp.includes("connect-src 'none'") && !csp.includes('supabase') && !csp.includes('google'));
-check('no input forms or embedded frames',csp.includes("form-action 'none'") && csp.includes("frame-src 'none'") && csp.includes("frame-ancestors 'none'"));
+check('frozen legal/default routes retain no remote connections',csp.includes("connect-src 'none'") && !csp.includes('supabase') && !csp.includes('google'));
+const endpoint='https://edfrlptpeuhjsgxdfwke.supabase.co/functions/v1/website-contact';
+for (const path of ['/','/app/ko','/app/en','/admin/inquiries']) {
+  const policy=headersForPath(path)['Content-Security-Policy'];
+  const expected=`connect-src ${endpoint} ${endpoint}/${path.startsWith('/admin/') ? ' https://edfrlptpeuhjsgxdfwke.supabase.co/auth/v1/' : ''}`;
+  check(`exact website-only connect policy ${path}`,policy.split(';').map(x=>x.trim()).includes(expected));
+  check(`native form submission and frame denial ${path}`,policy.includes("form-action 'none'") && policy.includes("frame-src 'none'") && policy.includes("frame-ancestors 'none'"));
+}
 check('environment loading disabled',read('vite.config.js').includes('envDir: false'));
 const dependencies=Object.keys(json('package.json').dependencies);
-check('only React public runtime',dependencies.length===2 && dependencies.includes('react') && dependencies.includes('react-dom'));
+check('only React and pinned Supabase runtime',dependencies.length===3 && dependencies.includes('react') && dependencies.includes('react-dom') && /^\d+\.\d+\.\d+$/.test(json('package.json').dependencies['@supabase/supabase-js']));
 const activeFiles=walk('src');
-check('restaurant UI archived outside active compilation',activeFiles.every(path=>path==='src/App.jsx' || path==='src/main.jsx' || path==='src/styles/marketing.css' || path.startsWith('src/marketing/')));
+check('restaurant UI archived outside active compilation',activeFiles.every(path=>path==='src/App.jsx' || path==='src/main.jsx' || path==='src/operator.jsx' || path==='src/styles/marketing.css' || path.startsWith('src/marketing/')));
 check('legacy archive excluded from Vercel uploads',read('.vercelignore').split(/\r?\n/).includes('legacy'));
 check('frozen HTML disables Git newline conversion',read('.gitattributes').includes('public/*.html -text') && read('.gitattributes').includes('public/terms/*.html -text'));
 const bundle=walk('dist/assets').filter(x=>x.endsWith('.js')).map(read).join('\n');
-check('no restaurant, OCR or Supabase runtime in bundle',!/supabase\.co|edfrlptpeuhjsgxdfwke|tlrwsabbgbtdcsoayceg|tesseract|homepage_reviews|admin-review|map\.naver|조개구이|eulwangri/.test(bundle));
-check('no fetch/XHR data collection in public source',!/(?:fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage)/.test(read('src/App.jsx')+read('src/main.jsx')));
+check('no retired backend or protected app runtime in bundle',!/tlrwsabbgbtdcsoayceg|tesseract|homepage_reviews|admin-review|map\.naver|조개구이|eulwangri/.test(bundle));
+check('public transport bound to website project only',read('src/marketing/contact-api.js').includes("config.url === 'https://edfrlptpeuhjsgxdfwke.supabase.co'") && !bundle.includes('service_role'));
+check('root has no unrelated collection or persistent data storage',!/(?:fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage)/.test(read('src/App.jsx')+read('src/main.jsx')));
+check('operator tokens use only tab storage',read('src/marketing/operator-auth.js').includes('storage=probeTabStorage(window.sessionStorage)') && read('src/marketing/operator-auth.js').includes('persistSession:true') && !/\blocalStorage\s*[.(]/.test(read('src/marketing/operator-auth.js')));
 check('no unsafe HTML rendering',!read('src/App.jsx').includes('dangerouslySetInnerHTML'));
 check('no new service worker registration',!read('src/main.jsx').includes('serviceWorker.register('));
 const worker=read('public/sw.js');

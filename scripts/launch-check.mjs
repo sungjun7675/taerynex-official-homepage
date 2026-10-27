@@ -32,7 +32,7 @@ for (const code of localeCodes) {
   check(`localized real screen ${code}`,html.includes(`/brand/app-home-${code}.webp`) && html.includes(`/brand/app-saju-${code}.webp`) && html.includes(`/brand/app-calendar-${code}.webp`));
   check(`localized legal links ${code}`,html.includes(`href="/${code}.html"`) && html.includes(`href="/terms/${code}.html"`));
   check(`no public installation or restaurant links ${code}`,!/play\.google\.com|apps\.apple\.com|map\.naver|Restaurant|동해회|조개구이/.test(html));
-  check(`no forms or birthday inputs ${code}`,!/<form\b|<input\b|<iframe\b/.test(html));
+  check(`only bounded contact inputs, no birthday or attachment fields ${code}`,html.includes('id="contact-email"') && html.includes('id="contact-message"') && html.includes('id="contact-notice"') && !/type="(?:file|date|password)"|<iframe\b/.test(html));
   check(`OG and description localized ${code}`,html.includes(`property="og:title" content="${c.title}"`) && html.includes(`property="og:locale"`));
   check(`English or localized copy, no Korean fallback ${code}`,code === 'ko' || !/[가-힣]/.test(c.headline.join('') + c.story.join('') + c.features.map(x=>x.detail).join('') + c.faq.flat().join('')));
   for (const href of html.matchAll(/(?:src|href)="(\/(?:assets|brand)\/[^"#]+)"/g)) check(`resolved asset ${code} ${href[1]}`,existsSync(`dist${href[1]}`));
@@ -41,7 +41,7 @@ for (const code of localeCodes) {
 check('13 distinct titles and descriptions',allTitles.size === 13 && allDescriptions.size === 13);
 check('root Korean marketing, not privacy',read('dist/index.html').includes(locales.ko.headline[0]) && !read('dist/index.html').includes('policy-version'));
 check('Google homepage /app/ remains English',read('dist/app/index.html') === read('dist/app/en.html'));
-const known = new Set(['dist/index.html','dist/app/index.html','dist/404.html','dist/sw.js','dist/robots.txt','dist/sitemap.xml',...localeCodes.map(c=>`dist/app/${c}.html`),...Object.keys(integrity.files).map(f=>`dist/${f}`),...requiredAssets.map(f=>`dist/brand/${f}`)]);
+const known = new Set(['dist/index.html','dist/admin/inquiries.html','dist/app/index.html','dist/404.html','dist/sw.js','dist/robots.txt','dist/sitemap.xml',...localeCodes.map(c=>`dist/app/${c}.html`),...Object.keys(integrity.files).map(f=>`dist/${f}`),...requiredAssets.map(f=>`dist/brand/${f}`)]);
 for (const file of walk('dist')) check(`no unexpected public file ${file}`,known.has(file) || /^dist\/assets\/[\w-]+\.(js|css)$/.test(file));
 const vercel=json('vercel.json');
 check('static Vercel routing without SPA catch-all',vercel.cleanUrls === true && !vercel.rewrites && !vercel.redirects);

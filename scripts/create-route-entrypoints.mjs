@@ -10,7 +10,7 @@ const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;')
 const ogLocales = { ko:'ko_KR', en:'en_US', ja:'ja_JP', 'zh-Hans':'zh_CN', 'zh-Hant':'zh_TW', es:'es_ES', pt:'pt_BR', fr:'fr_FR', de:'de_DE', id:'id_ID', th:'th_TH', vi:'vi_VN', hi:'hi_IN' };
 const template = await readFile('dist/index.html', 'utf8');
 if (!template.includes('<!-- marketing:metadata -->') || !template.includes('<div id="root"></div>')) throw new Error('Missing prerender template markers');
-const server = await createServer({ configFile: resolve('vite.config.js'), server: { middlewareMode: true }, appType: 'custom' });
+const server = await createServer({ configFile: resolve('vite.config.js'), server: { middlewareMode: true, hmr: false }, appType: 'custom' });
 try {
   const { default: App } = await server.ssrLoadModule('/src/App.jsx');
   for (const locale of localeCodes) {

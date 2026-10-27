@@ -3,6 +3,7 @@ dist/
 .vercel/
 .env
 .env.local
+supabase/.temp/
 *.log
 *.err
 src/assets/images/hero/hero-seafood-cinematic.png

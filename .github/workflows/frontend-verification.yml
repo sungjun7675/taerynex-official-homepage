@@ -15,7 +15,12 @@
         ".gitattributes",
         ".vercelignore",
         ".github/workflows/**",
-        "docs/legal-integrity.json"
+        "docs/legal-integrity.json",
+        "admin/**",
+        "supabase/functions/website-contact/**",
+        "supabase/migrations/**",
+        "supabase/setup/website-contact-*.sql",
+        "supabase/config.toml"
       ]
     },
     "pull_request": {
@@ -32,7 +37,12 @@
         ".gitattributes",
         ".vercelignore",
         ".github/workflows/**",
-        "docs/legal-integrity.json"
+        "docs/legal-integrity.json",
+        "admin/**",
+        "supabase/functions/website-contact/**",
+        "supabase/migrations/**",
+        "supabase/setup/website-contact-*.sql",
+        "supabase/config.toml"
       ]
     },
     "workflow_dispatch": {}
