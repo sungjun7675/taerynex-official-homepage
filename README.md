@@ -1,155 +1,102 @@
-# Eulwangri Donghae Homepage
+# TAERYNEX official marketing website — local candidate
 
-Project scaffold for the Eulwangri Donghae homepage.
+React 19 / Vite, retaining the existing Git history. Target provider: Vercel;
+the website project was retired and renamed under H7, with post-read verification recorded. No backend client, analytics,
+forms, calculator, CMS, account registration or payment is part of this site.
 
-## Local setup
-
-```bash
-npm install
-npm run dev
-```
-
-## Supabase connection
-
-Create `.env.local` from `.env.example` and fill only browser-safe values.
-
-```env
-VITE_SUPABASE_URL=
-VITE_SUPABASE_ANON_KEY=
-VITE_USE_ADMIN_EDGE_FUNCTIONS=false
-VITE_SITE_URL=https://eulwangri-donghae-homepage.vercel.app/
-```
-
-Do not place a Supabase `service_role` key in this frontend project.
-
-The optional review table SQL is prepared at:
-
-```text
-supabase/migrations/20260719123000_create_homepage_reviews.sql
-supabase/migrations/20260719130500_add_review_source_fields.sql
-supabase/migrations/20260720001000_add_admin_reviews_and_photos.sql
-supabase/migrations/20260720223000_harden_admin_reviews_security.sql
-supabase/migrations/20260720230000_harden_admin_boundary_and_rate_limit.sql
-```
-
-Review registration rules and SQL examples are documented at:
-
-```text
-docs/review-operations.md
-```
-
-Launch, search registration, share preview, and custom-domain tasks are documented at:
-
-```text
-docs/launch-checklist.md
-```
-
-Security hardening notes are documented at:
-
-```text
-docs/security-hardening.md
-```
-
-## Review admin app
-
-The hidden mobile admin app is available after deployment at:
-
-```text
-https://eulwangri-donghae-homepage.vercel.app/admin
-```
-
-The legacy hash route still works for old bookmarks:
-
-```text
-https://eulwangri-donghae-homepage.vercel.app/#admin
-```
-
-Use `/admin` as the canonical admin URL on Vercel so the server can apply `Cache-Control: no-store`.
-
-It uses Supabase Auth, RLS, and the private `review-photos` storage bucket created by the security migrations. Keep using only the browser-safe anon key in deployment secrets.
-
-For the highest security boundary, deploy `supabase/functions/admin-review` and set:
-
-```text
-VITE_USE_ADMIN_EDGE_FUNCTIONS=true
-```
-
-## Vercel deployment
-
-The repository includes `vercel.json` for Vite routing, SPA rewrites, and production HTTP security headers.
-
-Vercel environment variables:
-
-```text
-VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY
-VITE_USE_ADMIN_EDGE_FUNCTIONS=true
-VITE_SITE_URL=https://eulwangri-donghae-homepage.vercel.app/
-```
-
-Build settings:
-
-```text
-Framework Preset: Vite
-Install Command: npm ci
-Build Command: npm run build
-Output Directory: dist
-```
-
-After Vercel deploys, verify HTTP response headers:
-
-```bash
-npm run security:headers -- https://eulwangri-donghae-homepage.vercel.app/
-```
-
-The manual GitHub workflow `Deploy Supabase security boundary` can apply the Supabase migrations
-and deploy the Edge Function when these repository secrets are configured:
-
-```text
-SUPABASE_ACCESS_TOKEN
-SUPABASE_DB_URL
-```
-
-## GitHub Pages deployment
-
-GitHub Pages remains available as a fallback deployment, but it cannot set custom HTTP response headers.
-Use Vercel as production when the security header score matters.
-
-The repository includes `.github/workflows/deploy-pages.yml`.
-
-The workflow runs the repository and Supabase boundary security checks before building:
-
-```bash
+```sh
+npm ci
+npm run build
+npm run launch:check
 npm run security:check
-npm run security:supabase
+npm run security:headers
+npm test
+npm run preview:marketing
 ```
 
-In GitHub, set repository secrets before production deployment:
+Preview: http://127.0.0.1:4173/app/ko (the preview models the checked-in static
+routing/headers; it is not evidence of actual Vercel behavior).
+The build explicitly disables `.env` loading. No environment variables are needed.
+`npm run dev` is the Korean authoring shell; use the production preview for all
+prerendered locale and legal routes.
 
-```text
-VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY
-VITE_USE_ADMIN_EDGE_FUNCTIONS
-```
+- `/` is the proposed Korean marketing homepage, locally only.
+- `/app/` retains an English homepage, `/app/{locale}` provides all 13 languages.
+  Root and `/app/` canonicalize in metadata to `/app/ko` and `/app/en` respectively.
+- `/{locale}.html` and `/terms/{locale}.html` are exact frozen privacy 1.0.6
+  and terms 1.0.4 files; Vercel `cleanUrls` also provides extensionless URLs.
+  No SPA catch-all. Original `google2233132a77c14ffe.html` is unchanged.
+- `docs/legal-integrity.json` freezes the copied documents' SHA-256 and origin.
+  Original root privacy remains byte-identical at `/ko.html`. `_headers` is not
+  copied: security configuration for Vercel lives in `vercel.json`.
+- `public/brand/` is Main-owned: landscape, icon, and 39 genuine localized app
+  captures. No reference screenshot or fictional phone UI is used.
+- Old frontend source is archived under `legacy/restaurant/`, outside `src`.
+  Old SQL remains under `supabase/` as historical migrations; the new H7 retirement
+  migration was applied through Supabase MCP as reported by Main; see H7.
+  Only `src/App.jsx` → `src/marketing/` is in the new public module graph.
+  Old public restaurant images, icon and manifest are retired from served output.
+  Legacy workflows are manual-only and explicitly guarded; never run them for
+  this site. There is no automatic database migration or deployment workflow.
 
-Then open `Settings > Pages` and select `GitHub Actions` as the Pages source. The site URL will be:
+## H10 — CEO requested existing free-plan replacement
 
-```text
-https://sungjun7675.github.io/eulwangri-donghae-homepage/
-```
+The CEO accepted H9 screens/content and explicitly directed replacement inside
+this existing Vercel project while retaining Hobby with no paid upgrade.
+The verified commercial-use restriction was disclosed; successful deployment
+must not be reported as policy compliance. New legal terms or payment actions
+remain outside authorization. No new hosting project is required.
 
-If the first workflow run fails at `Configure Pages`, enable the Pages source above and re-run the workflow.
+Deploy only this accepted frontend through the existing Git production branch
+with normal fast-forward history. Public deployment/provider routing, legal
+hashes, HTTPS/security headers and domain verification are pending until their
+actual result is recorded. Preserve installed-app Pages legal compatibility.
+Preserve the website project `edfrlptpeuhjsgxdfwke` and its platform schemas. The app backend `tlrwsabbgbtdcsoayceg` remains protected and outside
+the retirement scope. Do not replay historical restaurant migrations.
 
-## GitHub remote
+## H7 — old restaurant retirement complete, verified
 
-Target account:
+The CEO waived old restaurant backups and authorized the exact irreversible
+management cleanup at action time. Existing project `edfrlptpeuhjsgxdfwke` is
+retained and renamed `taerynex-official-homepage`; provider state ACTIVE_HEALTHY.
 
-```text
-https://github.com/sungjun7675
-```
+Previously applied DB retirement (four tables, three functions, four policies)
+was reused without repeating its tests. The Dashboard's normal services then
+removed four review photos, their `review-photos` bucket, the restaurant Auth
+identity and Edge Function `admin-review`. No direct Storage metadata deletion.
+Fresh MCP readback: Storage objects 0, buckets 0, Auth users/identities/sessions
+all 0, Edge Functions 0. The app backend `tlrwsabbgbtdcsoayceg` was not changed.
 
-Expected repository name:
+Evidence: `C:/projects/taerynex/artifacts/qa/homepage_20261027/H7-completed.json`.
+The existing 13-language local frontend is the TAERYNEX replacement candidate.
+No duplicate web accounts, new database content or server functions are needed
+for its approved static content. H7 cleanup does not eliminate compute charges.
+H8 final integration, H9 CEO acceptance and H10 approved commercial hosting /
+live deployment / domain cutover remain. No public deployment is claimed.
+The Android app is in closed testing; mailto inquiries do not enroll testers.
+iOS is in preparation without a promised date. Copy is localized using the
+accepted app introductions as reference; native editorial review remains a
+release consideration. No public installation, user-count or efficacy claim.
 
-```text
-eulwangri-donghae-homepage
-```
+## Frontend verification CI
+
+`.github/workflows/frontend-verification.yml` runs frontend checks on relevant push/PR changes with read-only permissions, no secrets and no deployment. It uses JSON (a YAML subset) for dependency-free structural validation. Existing Pages/Supabase workflows remain disabled. `node scripts/frontend-ci-check.mjs` checks this contract.
+
+Execution attribution and retained repair logs: `docs/verification-evidence.json`. Earlier command results are writer-observed transcript evidence; earlier raw command log files were not retained and have not been reconstructed.
+
+## H8 final local integration / H9 presentation
+
+Independent final delta review: PASS_WITH_CONCERNS for local preview only.
+Three served resources match disk bytes, two frozen assets match retained hashes,
+four private/source path probes return 404, and retired-backend references are
+absent from the current static output. Accepted builds/tests/browser evidence
+were reused; no full-suite rerun or remote mutation was performed.
+Stale H7/backup handoff statements were repaired and independently rechecked.
+
+Actual desktop/mobile Chrome captures and H9 assessment are recorded in
+`C:/projects/taerynex/artifacts/qa/homepage_20261027/H9-presentation.json`.
+The viewport override was reset. The CEO explicitly accepted the H9 content and visual presentation.
+H10 execution uses the CEO-requested existing Hobby plan with the disclosed restriction; deployment/domain cutover,
+and actual public-provider routing/HTTPS/header verification. Physical website
+and audible-reader acceptance, native-language certification and field
+performance are not established by a local browser preview.

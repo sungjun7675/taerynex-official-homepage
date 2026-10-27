@@ -1,0 +1,878 @@
+{
+  "baseline": "7752f821326da0cdd6bc9738568e8cba41c46efa",
+  "branch": "codex/taerynex-official-homepage",
+  "modifiedOrDeleted": [
+    ".github/workflows/deploy-pages.yml",
+    ".github/workflows/deploy-supabase-security.yml",
+    ".github/workflows/security-audit.yml",
+    ".vercelignore",
+    "README.md",
+    "docs/commercial-launch-checklist.md",
+    "docs/launch-checklist.md",
+    "docs/review-operations.md",
+    "docs/security-hardening.md",
+    "index.html",
+    "package-lock.json",
+    "package.json",
+    "public/favicon/site-icon.svg",
+    "public/manifest.webmanifest",
+    "public/og-hero-cinematic.jpg",
+    "public/robots.txt",
+    "public/sitemap.xml",
+    "public/sw.js",
+    "scripts/create-route-entrypoints.mjs",
+    "scripts/header-check.mjs",
+    "scripts/launch-check.mjs",
+    "scripts/security-check.mjs",
+    "scripts/supabase-security-check.mjs",
+    "src/App.jsx",
+    "src/assets/images/hero/grilled-seafood-hero.jpg",
+    "src/assets/images/hero/grilled-seafood-hero.png",
+    "src/assets/images/hero/hero-seafood-cinematic.jpg",
+    "src/assets/images/hero/hero-seafood-photo.png",
+    "src/assets/images/hero/real-grilled-shellfish-optimized.jpg",
+    "src/assets/images/hero/real-grilled-shellfish.jpeg",
+    "src/assets/images/menu/menu-thumbnail-strip.jpg",
+    "src/assets/images/menu/menu-thumbnail-strip.png",
+    "src/assets/images/menu/official-cheese-scallop-closeup.jpg",
+    "src/assets/images/menu/official-cheese-scallop-table.jpg",
+    "src/assets/images/menu/official-couple-set-menu.jpg",
+    "src/assets/images/menu/official-family-set-menu.jpg",
+    "src/assets/images/menu/official-sashimi-shellfish.jpg",
+    "src/assets/images/menu/official-shellfish-cheese-set-menu.jpg",
+    "src/assets/images/menu/official-special-set-menu.jpg",
+    "src/assets/images/menu/official-special-shellfish.jpg",
+    "src/assets/images/menu/real-assorted-shellfish-optimized.jpg",
+    "src/assets/images/menu/real-assorted-shellfish.jpeg",
+    "src/assets/images/menu/real-cheese-scallop-official.jpg",
+    "src/assets/images/menu/real-grilled-scallop-optimized.jpg",
+    "src/assets/images/menu/real-grilled-scallop.jpeg",
+    "src/assets/images/menu/real-seafood-kalguksu-optimized.jpg",
+    "src/assets/images/menu/real-seafood-kalguksu.jpeg",
+    "src/assets/images/menu/real-shrimp-shellfish-optimized.jpg",
+    "src/assets/images/menu/real-shrimp-shellfish.jpeg",
+    "src/assets/images/menu/real-spicy-raw-fish-optimized.jpg",
+    "src/assets/images/menu/real-spicy-raw-fish.webp",
+    "src/assets/images/review/real-sashimi-optimized.jpg",
+    "src/assets/images/review/real-sashimi.jpeg",
+    "src/assets/images/source-photos/daangn-photo-01.jpeg",
+    "src/assets/images/source-photos/daangn-photo-02.jpeg",
+    "src/assets/images/source-photos/daangn-photo-03.jpeg",
+    "src/assets/images/source-photos/daangn-photo-04.jpeg",
+    "src/assets/images/source-photos/daangn-photo-05.jpeg",
+    "src/assets/images/source-photos/daangn-photo-06.jpeg",
+    "src/assets/images/source-photos/daangn-photo-07.jpeg",
+    "src/assets/images/source-photos/daangn-photo-08.jpeg",
+    "src/assets/images/source-photos/daangn-photo-09.jpeg",
+    "src/assets/images/source-photos/daangn-photo-10.jpeg",
+    "src/assets/images/source-photos/diningcode-photo-02.webp",
+    "src/assets/images/source-photos/diningcode-photo-03.webp",
+    "src/assets/images/source-photos/diningcode-photo-04.webp",
+    "src/assets/images/source-photos/diningcode-photo-05.webp",
+    "src/assets/images/source-photos/diningcode-search-exterior-thumb.webp",
+    "src/assets/images/source-photos/diningcode-store-exterior.webp",
+    "src/assets/images/source-photos/nateview-photo-01.jpeg",
+    "src/assets/images/source-photos/nateview-photo-02.jpeg",
+    "src/assets/images/source-photos/nateview-photo-03.jpeg",
+    "src/assets/images/source-photos/nateview-photo-04.jpeg",
+    "src/assets/images/source-photos/nateview-photo-05.jpeg",
+    "src/assets/images/source-photos/nateview-photo-06.jpeg",
+    "src/assets/images/source-photos/nateview-photo-07.jpeg",
+    "src/assets/images/source-photos/nateview-photo-08.jpeg",
+    "src/assets/images/source-photos/nateview-photo-09.jpeg",
+    "src/assets/images/source-photos/nateview-photo-10.jpeg",
+    "src/assets/images/source-photos/nateview-photo-11.jpeg",
+    "src/assets/images/source-photos/nateview-photo-12.jpeg",
+    "src/assets/images/source-photos/nateview-photo-13.jpeg",
+    "src/assets/images/source-photos/nateview-photo-14.jpeg",
+    "src/assets/images/source-photos/nateview-photo-15.jpeg",
+    "src/assets/images/source-photos/nateview-photo-16.jpeg",
+    "src/assets/images/source-photos/nateview-photo-17.jpeg",
+    "src/assets/images/source-photos/nateview-photo-18.jpeg",
+    "src/assets/images/store/real-store-night-optimized.jpg",
+    "src/assets/images/store/real-store-night.jpeg",
+    "src/assets/images/store/seaside-restaurant-night.jpg",
+    "src/assets/images/store/seaside-restaurant-night.png",
+    "src/components/common/Container.jsx",
+    "src/components/common/Footer.jsx",
+    "src/components/common/Header.jsx",
+    "src/components/common/MobileActionBar.jsx",
+    "src/components/common/SectionTitle.jsx",
+    "src/components/common/StructuredData.jsx",
+    "src/components/common/TopButton.jsx",
+    "src/components/layout/MainLayout.jsx",
+    "src/components/sections/GallerySection.jsx",
+    "src/components/sections/HeroSection.jsx",
+    "src/components/sections/LocalInfoSection.jsx",
+    "src/components/sections/MapSection.jsx",
+    "src/components/sections/MenuSection.jsx",
+    "src/components/sections/NoticeSection.jsx",
+    "src/components/sections/ReservationSection.jsx",
+    "src/components/sections/ReviewGuideSection.jsx",
+    "src/components/sections/ReviewSection.jsx",
+    "src/components/sections/StoreInfoSection.jsx",
+    "src/data/siteData.js",
+    "src/hooks/useScrollAnimation.js",
+    "src/lib/adminReviewApi.js",
+    "src/lib/routes.js",
+    "src/lib/supabaseClient.js",
+    "src/main.jsx",
+    "src/pages/Admin.jsx",
+    "src/pages/Home.jsx",
+    "src/styles/animations.css",
+    "src/styles/global.css",
+    "src/styles/responsive.css",
+    "src/styles/variables.css",
+    "src/utils/formatDate.js",
+    "src/utils/reviewText.js",
+    "src/utils/scrollTo.js",
+    "vercel.json",
+    "vite.config.js"
+  ],
+  "addedByEngineer": [
+    ".gitattributes",
+    "docs/legal-integrity.json",
+    "legacy/restaurant/README.md",
+    "legacy/restaurant/docs/commercial-launch-checklist.md",
+    "legacy/restaurant/docs/launch-checklist.md",
+    "legacy/restaurant/docs/review-operations.md",
+    "legacy/restaurant/docs/security-hardening.md",
+    "legacy/restaurant/scripts/supabase-security-check.mjs",
+    "legacy/restaurant/src/assets/images/hero/grilled-seafood-hero.jpg",
+    "legacy/restaurant/src/assets/images/hero/grilled-seafood-hero.png",
+    "legacy/restaurant/src/assets/images/hero/hero-seafood-cinematic.jpg",
+    "legacy/restaurant/src/assets/images/hero/hero-seafood-cinematic.png",
+    "legacy/restaurant/src/assets/images/hero/hero-seafood-photo.png",
+    "legacy/restaurant/src/assets/images/hero/real-grilled-shellfish-optimized.jpg",
+    "legacy/restaurant/src/assets/images/hero/real-grilled-shellfish.jpeg",
+    "legacy/restaurant/src/assets/images/menu/menu-thumbnail-strip.jpg",
+    "legacy/restaurant/src/assets/images/menu/menu-thumbnail-strip.png",
+    "legacy/restaurant/src/assets/images/menu/official-cheese-scallop-closeup.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-cheese-scallop-table.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-couple-set-menu.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-family-set-menu.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-sashimi-shellfish.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-shellfish-cheese-set-menu.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-special-set-menu.jpg",
+    "legacy/restaurant/src/assets/images/menu/official-special-shellfish.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-assorted-shellfish-optimized.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-assorted-shellfish.jpeg",
+    "legacy/restaurant/src/assets/images/menu/real-cheese-scallop-official.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-grilled-scallop-optimized.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-grilled-scallop.jpeg",
+    "legacy/restaurant/src/assets/images/menu/real-seafood-kalguksu-optimized.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-seafood-kalguksu.jpeg",
+    "legacy/restaurant/src/assets/images/menu/real-shrimp-shellfish-optimized.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-shrimp-shellfish.jpeg",
+    "legacy/restaurant/src/assets/images/menu/real-spicy-raw-fish-optimized.jpg",
+    "legacy/restaurant/src/assets/images/menu/real-spicy-raw-fish.webp",
+    "legacy/restaurant/src/assets/images/review/real-sashimi-optimized.jpg",
+    "legacy/restaurant/src/assets/images/review/real-sashimi.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-01.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-02.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-03.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-04.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-05.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-06.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-07.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-08.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-09.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/daangn-photo-10.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-02.webp",
+    "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-03.webp",
+    "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-04.webp",
+    "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-05.webp",
+    "legacy/restaurant/src/assets/images/source-photos/diningcode-search-exterior-thumb.webp",
+    "legacy/restaurant/src/assets/images/source-photos/diningcode-store-exterior.webp",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-01.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-02.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-03.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-04.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-05.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-06.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-07.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-08.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-09.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-10.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-11.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-12.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-13.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-14.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-15.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-16.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-17.jpeg",
+    "legacy/restaurant/src/assets/images/source-photos/nateview-photo-18.jpeg",
+    "legacy/restaurant/src/assets/images/store/real-store-night-optimized.jpg",
+    "legacy/restaurant/src/assets/images/store/real-store-night.jpeg",
+    "legacy/restaurant/src/assets/images/store/seaside-restaurant-night.jpg",
+    "legacy/restaurant/src/assets/images/store/seaside-restaurant-night.png",
+    "legacy/restaurant/src/components/common/Container.jsx",
+    "legacy/restaurant/src/components/common/Footer.jsx",
+    "legacy/restaurant/src/components/common/Header.jsx",
+    "legacy/restaurant/src/components/common/MobileActionBar.jsx",
+    "legacy/restaurant/src/components/common/SectionTitle.jsx",
+    "legacy/restaurant/src/components/common/StructuredData.jsx",
+    "legacy/restaurant/src/components/common/TopButton.jsx",
+    "legacy/restaurant/src/components/layout/MainLayout.jsx",
+    "legacy/restaurant/src/components/sections/GallerySection.jsx",
+    "legacy/restaurant/src/components/sections/HeroSection.jsx",
+    "legacy/restaurant/src/components/sections/LocalInfoSection.jsx",
+    "legacy/restaurant/src/components/sections/MapSection.jsx",
+    "legacy/restaurant/src/components/sections/MenuSection.jsx",
+    "legacy/restaurant/src/components/sections/NoticeSection.jsx",
+    "legacy/restaurant/src/components/sections/ReservationSection.jsx",
+    "legacy/restaurant/src/components/sections/ReviewGuideSection.jsx",
+    "legacy/restaurant/src/components/sections/ReviewSection.jsx",
+    "legacy/restaurant/src/components/sections/StoreInfoSection.jsx",
+    "legacy/restaurant/src/data/siteData.js",
+    "legacy/restaurant/src/hooks/useScrollAnimation.js",
+    "legacy/restaurant/src/lib/adminReviewApi.js",
+    "legacy/restaurant/src/lib/routes.js",
+    "legacy/restaurant/src/lib/supabaseClient.js",
+    "legacy/restaurant/src/pages/Admin.jsx",
+    "legacy/restaurant/src/pages/Home.jsx",
+    "legacy/restaurant/src/styles/animations.css",
+    "legacy/restaurant/src/styles/global.css",
+    "legacy/restaurant/src/styles/responsive.css",
+    "legacy/restaurant/src/styles/variables.css",
+    "legacy/restaurant/src/utils/formatDate.js",
+    "legacy/restaurant/src/utils/reviewText.js",
+    "legacy/restaurant/src/utils/scrollTo.js",
+    "public/de.html",
+    "public/en.html",
+    "public/es.html",
+    "public/fr.html",
+    "public/google2233132a77c14ffe.html",
+    "public/hi.html",
+    "public/id.html",
+    "public/ja.html",
+    "public/ko.html",
+    "public/pt.html",
+    "public/terms/de.html",
+    "public/terms/en.html",
+    "public/terms/es.html",
+    "public/terms/fr.html",
+    "public/terms/hi.html",
+    "public/terms/id.html",
+    "public/terms/index.html",
+    "public/terms/ja.html",
+    "public/terms/ko.html",
+    "public/terms/pt.html",
+    "public/terms/th.html",
+    "public/terms/vi.html",
+    "public/terms/zh-Hans.html",
+    "public/terms/zh-Hant.html",
+    "public/th.html",
+    "public/vi.html",
+    "public/zh-Hans.html",
+    "public/zh-Hant.html",
+    "scripts/check-utils.mjs",
+    "scripts/preview-marketing.mjs",
+    "src/marketing/FeatureArt.jsx",
+    "src/marketing/locales-extra.js",
+    "src/marketing/locales.js",
+    "src/styles/marketing.css",
+    "tests/marketing.test.mjs",
+    "docs/change-manifest.json"
+  ],
+  "mainOwnedAssets": [
+    "public/brand/app-calendar-de.webp",
+    "public/brand/app-calendar-en.webp",
+    "public/brand/app-calendar-es.webp",
+    "public/brand/app-calendar-fr.webp",
+    "public/brand/app-calendar-hi.webp",
+    "public/brand/app-calendar-id.webp",
+    "public/brand/app-calendar-ja.webp",
+    "public/brand/app-calendar-ko.webp",
+    "public/brand/app-calendar-pt.webp",
+    "public/brand/app-calendar-th.webp",
+    "public/brand/app-calendar-vi.webp",
+    "public/brand/app-calendar-zh-Hans.webp",
+    "public/brand/app-calendar-zh-Hant.webp",
+    "public/brand/app-home-de.webp",
+    "public/brand/app-home-en.webp",
+    "public/brand/app-home-es.webp",
+    "public/brand/app-home-fr.webp",
+    "public/brand/app-home-hi.webp",
+    "public/brand/app-home-id.webp",
+    "public/brand/app-home-ja.webp",
+    "public/brand/app-home-ko.webp",
+    "public/brand/app-home-pt.webp",
+    "public/brand/app-home-th.webp",
+    "public/brand/app-home-vi.webp",
+    "public/brand/app-home-zh-Hans.webp",
+    "public/brand/app-home-zh-Hant.webp",
+    "public/brand/app-icon.webp",
+    "public/brand/app-saju-de.webp",
+    "public/brand/app-saju-en.webp",
+    "public/brand/app-saju-es.webp",
+    "public/brand/app-saju-fr.webp",
+    "public/brand/app-saju-hi.webp",
+    "public/brand/app-saju-id.webp",
+    "public/brand/app-saju-ja.webp",
+    "public/brand/app-saju-ko.webp",
+    "public/brand/app-saju-pt.webp",
+    "public/brand/app-saju-th.webp",
+    "public/brand/app-saju-vi.webp",
+    "public/brand/app-saju-zh-Hans.webp",
+    "public/brand/app-saju-zh-Hant.webp",
+    "public/brand/hero-landscape.webp"
+  ],
+  "archivedFrontendGitBlobComparison": [
+    {
+      "from": "src/assets/images/hero/grilled-seafood-hero.jpg",
+      "to": "legacy/restaurant/src/assets/images/hero/grilled-seafood-hero.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/hero/grilled-seafood-hero.png",
+      "to": "legacy/restaurant/src/assets/images/hero/grilled-seafood-hero.png",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/hero/hero-seafood-cinematic.jpg",
+      "to": "legacy/restaurant/src/assets/images/hero/hero-seafood-cinematic.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/hero/hero-seafood-photo.png",
+      "to": "legacy/restaurant/src/assets/images/hero/hero-seafood-photo.png",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/hero/real-grilled-shellfish-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/hero/real-grilled-shellfish-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/hero/real-grilled-shellfish.jpeg",
+      "to": "legacy/restaurant/src/assets/images/hero/real-grilled-shellfish.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/menu-thumbnail-strip.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/menu-thumbnail-strip.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/menu-thumbnail-strip.png",
+      "to": "legacy/restaurant/src/assets/images/menu/menu-thumbnail-strip.png",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-cheese-scallop-closeup.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-cheese-scallop-closeup.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-cheese-scallop-table.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-cheese-scallop-table.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-couple-set-menu.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-couple-set-menu.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-family-set-menu.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-family-set-menu.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-sashimi-shellfish.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-sashimi-shellfish.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-shellfish-cheese-set-menu.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-shellfish-cheese-set-menu.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-special-set-menu.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-special-set-menu.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/official-special-shellfish.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/official-special-shellfish.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-assorted-shellfish-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-assorted-shellfish-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-assorted-shellfish.jpeg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-assorted-shellfish.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-cheese-scallop-official.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-cheese-scallop-official.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-grilled-scallop-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-grilled-scallop-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-grilled-scallop.jpeg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-grilled-scallop.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-seafood-kalguksu-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-seafood-kalguksu-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-seafood-kalguksu.jpeg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-seafood-kalguksu.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-shrimp-shellfish-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-shrimp-shellfish-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-shrimp-shellfish.jpeg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-shrimp-shellfish.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-spicy-raw-fish-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/menu/real-spicy-raw-fish-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/menu/real-spicy-raw-fish.webp",
+      "to": "legacy/restaurant/src/assets/images/menu/real-spicy-raw-fish.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/review/real-sashimi-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/review/real-sashimi-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/review/real-sashimi.jpeg",
+      "to": "legacy/restaurant/src/assets/images/review/real-sashimi.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-01.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-01.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-02.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-02.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-03.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-03.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-04.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-04.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-05.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-05.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-06.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-06.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-07.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-07.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-08.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-08.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-09.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-09.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/daangn-photo-10.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/daangn-photo-10.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/diningcode-photo-02.webp",
+      "to": "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-02.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/diningcode-photo-03.webp",
+      "to": "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-03.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/diningcode-photo-04.webp",
+      "to": "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-04.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/diningcode-photo-05.webp",
+      "to": "legacy/restaurant/src/assets/images/source-photos/diningcode-photo-05.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/diningcode-search-exterior-thumb.webp",
+      "to": "legacy/restaurant/src/assets/images/source-photos/diningcode-search-exterior-thumb.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/diningcode-store-exterior.webp",
+      "to": "legacy/restaurant/src/assets/images/source-photos/diningcode-store-exterior.webp",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-01.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-01.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-02.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-02.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-03.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-03.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-04.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-04.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-05.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-05.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-06.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-06.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-07.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-07.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-08.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-08.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-09.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-09.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-10.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-10.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-11.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-11.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-12.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-12.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-13.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-13.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-14.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-14.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-15.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-15.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-16.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-16.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-17.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-17.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/source-photos/nateview-photo-18.jpeg",
+      "to": "legacy/restaurant/src/assets/images/source-photos/nateview-photo-18.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/store/real-store-night-optimized.jpg",
+      "to": "legacy/restaurant/src/assets/images/store/real-store-night-optimized.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/store/real-store-night.jpeg",
+      "to": "legacy/restaurant/src/assets/images/store/real-store-night.jpeg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/store/seaside-restaurant-night.jpg",
+      "to": "legacy/restaurant/src/assets/images/store/seaside-restaurant-night.jpg",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/assets/images/store/seaside-restaurant-night.png",
+      "to": "legacy/restaurant/src/assets/images/store/seaside-restaurant-night.png",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/Container.jsx",
+      "to": "legacy/restaurant/src/components/common/Container.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/Footer.jsx",
+      "to": "legacy/restaurant/src/components/common/Footer.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/Header.jsx",
+      "to": "legacy/restaurant/src/components/common/Header.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/MobileActionBar.jsx",
+      "to": "legacy/restaurant/src/components/common/MobileActionBar.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/SectionTitle.jsx",
+      "to": "legacy/restaurant/src/components/common/SectionTitle.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/StructuredData.jsx",
+      "to": "legacy/restaurant/src/components/common/StructuredData.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/common/TopButton.jsx",
+      "to": "legacy/restaurant/src/components/common/TopButton.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/layout/MainLayout.jsx",
+      "to": "legacy/restaurant/src/components/layout/MainLayout.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/GallerySection.jsx",
+      "to": "legacy/restaurant/src/components/sections/GallerySection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/HeroSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/HeroSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/LocalInfoSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/LocalInfoSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/MapSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/MapSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/MenuSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/MenuSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/NoticeSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/NoticeSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/ReservationSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/ReservationSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/ReviewGuideSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/ReviewGuideSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/ReviewSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/ReviewSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/components/sections/StoreInfoSection.jsx",
+      "to": "legacy/restaurant/src/components/sections/StoreInfoSection.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/data/siteData.js",
+      "to": "legacy/restaurant/src/data/siteData.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/hooks/useScrollAnimation.js",
+      "to": "legacy/restaurant/src/hooks/useScrollAnimation.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/lib/adminReviewApi.js",
+      "to": "legacy/restaurant/src/lib/adminReviewApi.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/lib/routes.js",
+      "to": "legacy/restaurant/src/lib/routes.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/lib/supabaseClient.js",
+      "to": "legacy/restaurant/src/lib/supabaseClient.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/pages/Admin.jsx",
+      "to": "legacy/restaurant/src/pages/Admin.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/pages/Home.jsx",
+      "to": "legacy/restaurant/src/pages/Home.jsx",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/styles/animations.css",
+      "to": "legacy/restaurant/src/styles/animations.css",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/styles/global.css",
+      "to": "legacy/restaurant/src/styles/global.css",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/styles/responsive.css",
+      "to": "legacy/restaurant/src/styles/responsive.css",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/styles/variables.css",
+      "to": "legacy/restaurant/src/styles/variables.css",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/utils/formatDate.js",
+      "to": "legacy/restaurant/src/utils/formatDate.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/utils/reviewText.js",
+      "to": "legacy/restaurant/src/utils/reviewText.js",
+      "matchesBaselineGitBlob": true
+    },
+    {
+      "from": "src/utils/scrollTo.js",
+      "to": "legacy/restaurant/src/utils/scrollTo.js",
+      "matchesBaselineGitBlob": true
+    }
+  ],
+  "verification": {
+    "build": "PASS: 13 prerendered locales + ko root + en /app/",
+    "launch": "560/560",
+    "security": "24/24",
+    "headers": "47/47 local contract only",
+    "tests": "28/28",
+    "runtimeAudit": "npm audit --omit=dev --audit-level=moderate: 0 vulnerabilities",
+    "diffCheck": "git diff --check: exit 0",
+    "browser": "Main independently verified Chrome desktop1440, tablet768 repaired geometry, mobile390/menu and320/13-locale switching, native disclosures, exact legal links; evidence C:/projects/taerynex/artifacts/qa/homepage_20261027/browser/main-browser-qa.json. No physical-device or audible-reader claim.",
+    "independentReview": "H8 final delta principal_reviewer PASS_WITH_CONCERNS for local preview only. H7 backend independence and served asset identity verified; stale handoff records repaired and independently rechecked. No accepted tests rerun.",
+    "liveVercel": "UNVERIFIED; no deployment",
+    "backendSource": "Unchanged; git diff --exit-code -- supabase exit 0",
+    "remoteBackend": "H7 cleanup complete and verified; project retained and renamed. Frontend local only; app backend unchanged."
+  },
+  "repair20261027": {
+    "scope": [
+      "non-deploying frontend CI",
+      "tablet overflow geometry",
+      "feature-specific accessible summary names"
+    ],
+    "files": [
+      ".github/workflows/frontend-verification.yml",
+      "scripts/frontend-ci-check.mjs",
+      "scripts/security-check.mjs",
+      "src/App.jsx",
+      "src/styles/marketing.css",
+      "docs/verification-evidence.json",
+      "docs/change-manifest.json",
+      "README.md",
+      "artifacts/qa/frontend-repair_20261027/browser-geometry.json",
+      "artifacts/qa/frontend-repair_20261027/build.txt",
+      "artifacts/qa/frontend-repair_20261027/ci-contract.txt",
+      "artifacts/qa/frontend-repair_20261027/diff-check.txt",
+      "artifacts/qa/frontend-repair_20261027/execution.json",
+      "artifacts/qa/frontend-repair_20261027/launch.txt",
+      "artifacts/qa/frontend-repair_20261027/prerender.txt",
+      "artifacts/qa/frontend-repair_20261027/security.txt",
+      "artifacts/qa/frontend-repair_20261027/tablet-expanded.png"
+    ],
+    "evidence": "docs/verification-evidence.json",
+    "checksObservedBy": "web_engineer (writer)",
+    "result": "Targeted local checks PASS; independent delta review and Main browser repair verification observed. CI hosted execution and production cutover remain unverified.",
+    "hostedCi": "NOT_EXECUTED",
+    "productFrozen": true
+  },
+  "h7RemoteRetirement": {
+    "status": "H7_RETIREMENT_COMPLETE_VERIFIED",
+    "project": "edfrlptpeuhjsgxdfwke",
+    "projectName": "taerynex-official-homepage",
+    "evidence": "C:/projects/taerynex/artifacts/qa/homepage_20261027/H7-completed.json",
+    "frontendState": "LOCAL_13_LANGUAGE_CANDIDATE",
+    "deployment": "NOT_PERFORMED"
+  },
+  "h8Final": {
+    "status": "PASS_WITH_CONCERNS_LOCAL_ONLY",
+    "evidence": "C:/projects/taerynex/artifacts/qa/homepage_20261027/H8-final-integration.json",
+    "presentation": "C:/projects/taerynex/artifacts/qa/homepage_20261027/H9-presentation.json",
+    "remaining": "H9 accepted. H10 existing-project free-plan replacement requested; actual deployment/domain verification pending."
+  },
+  "h10Authorization": "CEO directs in-place existing Hobby project replacement; no paid upgrade or new legal agreement. Commercial restriction disclosed and unresolved."
+}

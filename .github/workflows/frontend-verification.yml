@@ -1,0 +1,102 @@
+{
+  "name": "Frontend verification",
+  "on": {
+    "push": {
+      "paths": [
+        "src/**",
+        "public/**",
+        "scripts/**",
+        "tests/**",
+        "index.html",
+        "package.json",
+        "package-lock.json",
+        "vite.config.js",
+        "vercel.json",
+        ".gitattributes",
+        ".vercelignore",
+        ".github/workflows/**",
+        "docs/legal-integrity.json"
+      ]
+    },
+    "pull_request": {
+      "paths": [
+        "src/**",
+        "public/**",
+        "scripts/**",
+        "tests/**",
+        "index.html",
+        "package.json",
+        "package-lock.json",
+        "vite.config.js",
+        "vercel.json",
+        ".gitattributes",
+        ".vercelignore",
+        ".github/workflows/**",
+        "docs/legal-integrity.json"
+      ]
+    },
+    "workflow_dispatch": {}
+  },
+  "permissions": {
+    "contents": "read"
+  },
+  "concurrency": {
+    "group": "frontend-verification-${{ github.workflow }}-${{ github.ref }}",
+    "cancel-in-progress": true
+  },
+  "jobs": {
+    "verify": {
+      "runs-on": "ubuntu-latest",
+      "timeout-minutes": 15,
+      "steps": [
+        {
+          "name": "Checkout",
+          "uses": "actions/checkout@v4",
+          "with": {
+            "persist-credentials": false
+          }
+        },
+        {
+          "name": "Setup Node",
+          "uses": "actions/setup-node@v4",
+          "with": {
+            "node-version": 22,
+            "cache": "npm"
+          }
+        },
+        {
+          "name": "Install locked dependencies",
+          "run": "npm ci --ignore-scripts --no-audit --no-fund"
+        },
+        {
+          "name": "Validate non-deploying CI contract",
+          "run": "node scripts/frontend-ci-check.mjs"
+        },
+        {
+          "name": "Build localized static website",
+          "run": "npm run build"
+        },
+        {
+          "name": "Validate launch output",
+          "run": "npm run launch:check"
+        },
+        {
+          "name": "Validate public security boundary",
+          "run": "npm run security:check"
+        },
+        {
+          "name": "Validate header contract",
+          "run": "npm run security:headers"
+        },
+        {
+          "name": "Run frontend regression tests",
+          "run": "npm test"
+        },
+        {
+          "name": "Audit runtime dependencies",
+          "run": "npm audit --omit=dev --audit-level=moderate"
+        }
+      ]
+    }
+  }
+}

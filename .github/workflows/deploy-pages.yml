@@ -1,9 +1,6 @@
-name: Deploy to GitHub Pages
+name: LEGACY restaurant GitHub Pages (disabled)
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 permissions:
@@ -17,6 +14,8 @@ concurrency:
 
 jobs:
   build:
+    # Historical workflow only. Restore from the archived baseline with separate authorization.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -61,6 +60,8 @@ jobs:
           path: dist
 
   deploy:
+    # Historical workflow only. Restore from the archived baseline with separate authorization.
+    if: ${{ false }}
     needs: build
     runs-on: ubuntu-latest
     environment:

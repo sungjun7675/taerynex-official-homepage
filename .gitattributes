@@ -1,0 +1,3 @@
+# Frozen legal / verification bytes must survive clone/checkout on Windows.
+public/*.html -text
+public/terms/*.html -text

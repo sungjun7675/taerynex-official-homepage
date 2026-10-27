@@ -1,0 +1,151 @@
+{
+  "recordedAt": "2026-10-27T09:30:09.225Z",
+  "observer": {
+    "role": "web_engineer",
+    "attribution": "Implementation writer. Not an independent reviewer."
+  },
+  "priorExecution": {
+    "basis": "Direct exec_command outputs observed by this implementation writer in the preceding turns; summaries were already retained in docs/change-manifest.json.",
+    "rawCommandLogsRetained": false,
+    "rawLogSearch": {
+      "localRoot": "Only pre-existing July restaurant logs found by filename/date; not current marketing acceptance logs.",
+      "localQa": "No earlier marketing QA command logs existed before this repair.",
+      "mainQa": "C:/projects/taerynex/artifacts/qa/homepage_20261027 contained checkpoint/asset data/browser capture, not current command logs."
+    },
+    "noPastLogsReconstructed": true,
+    "results": {
+      "build": {
+        "command": "npm run build",
+        "exitCode": 0,
+        "result": "13 locale pages + Korean root + English /app/; index-DKaB74fu.js and index-Dxo9GAxu.css"
+      },
+      "launch": {
+        "command": "npm run launch:check",
+        "exitCode": 0,
+        "result": "560/560"
+      },
+      "security": {
+        "command": "npm run security:check",
+        "exitCode": 0,
+        "result": "24/24 before CI repair"
+      },
+      "headers": {
+        "command": "npm run security:headers",
+        "exitCode": 0,
+        "result": "47/47 local contract; live Vercel unverified"
+      },
+      "tests": {
+        "command": "npm test",
+        "exitCode": 0,
+        "result": "28/28 before this repair; not rerun for log creation"
+      },
+      "runtimeAudit": {
+        "command": "npm audit --omit=dev --audit-level=moderate",
+        "exitCode": 0,
+        "result": "0 vulnerabilities"
+      }
+    }
+  },
+  "repairExecution": {
+    "scope": "CI + tablet overflow + feature accessible names",
+    "results": [
+      {
+        "name": "ci-contract",
+        "command": [
+          "node",
+          "scripts/frontend-ci-check.mjs"
+        ],
+        "startedAt": "2026-10-27T09:27:46.389Z",
+        "finishedAt": "2026-10-27T09:27:46.482Z",
+        "exitCode": 0,
+        "rawOutput": "artifacts/qa/frontend-repair_20261027/ci-contract.txt",
+        "observer": "web_engineer",
+        "observation": "direct child-process stdout/stderr captured during this repair"
+      },
+      {
+        "name": "build",
+        "command": [
+          "node",
+          "node_modules/vite/bin/vite.js",
+          "build"
+        ],
+        "startedAt": "2026-10-27T09:27:46.483Z",
+        "finishedAt": "2026-10-27T09:27:48.172Z",
+        "exitCode": 0,
+        "rawOutput": "artifacts/qa/frontend-repair_20261027/build.txt",
+        "observer": "web_engineer",
+        "observation": "direct child-process stdout/stderr captured during this repair"
+      },
+      {
+        "name": "prerender",
+        "command": [
+          "node",
+          "scripts/create-route-entrypoints.mjs"
+        ],
+        "startedAt": "2026-10-27T09:27:48.172Z",
+        "finishedAt": "2026-10-27T09:27:49.478Z",
+        "exitCode": 0,
+        "rawOutput": "artifacts/qa/frontend-repair_20261027/prerender.txt",
+        "observer": "web_engineer",
+        "observation": "direct child-process stdout/stderr captured during this repair"
+      },
+      {
+        "name": "launch",
+        "command": [
+          "node",
+          "scripts/launch-check.mjs"
+        ],
+        "startedAt": "2026-10-27T09:27:49.479Z",
+        "finishedAt": "2026-10-27T09:27:49.656Z",
+        "exitCode": 0,
+        "rawOutput": "artifacts/qa/frontend-repair_20261027/launch.txt",
+        "observer": "web_engineer",
+        "observation": "direct child-process stdout/stderr captured during this repair"
+      },
+      {
+        "name": "security",
+        "command": [
+          "node",
+          "scripts/security-check.mjs"
+        ],
+        "startedAt": "2026-10-27T09:27:49.656Z",
+        "finishedAt": "2026-10-27T09:27:49.756Z",
+        "exitCode": 0,
+        "rawOutput": "artifacts/qa/frontend-repair_20261027/security.txt",
+        "observer": "web_engineer",
+        "observation": "direct child-process stdout/stderr captured during this repair"
+      }
+    ],
+    "githubHostedRun": "NOT_EXECUTED",
+    "priorFullSuiteRerun": false
+  },
+  "repairBrowser": {
+    "file": "artifacts/qa/frontend-repair_20261027/browser-geometry.json",
+    "screenshot": "artifacts/qa/frontend-repair_20261027/tablet-expanded.png",
+    "result": "PASS: confirmed original 758 > 753 failure; repaired root/body 753 = 753; no global overflow suppression; four widths; native named summary Enter/Space toggling",
+    "observer": "web_engineer, direct browser observation",
+    "independent": false
+  },
+  "mainReportedPriorReview": {
+    "attribution": "User/Main report; not independently re-observed by writer",
+    "result": "PASS_WITH_CONCERNS; P2 missing frontend CI and tablet overflow routed for this repair"
+  },
+  "limitations": [
+    "GitHub-hosted Actions execution not run: no commit/push or remote workflow invocation.",
+    "Browser repair checks used Korean locale on 320/390/768/1692 widths; no fresh all-language browser suite.",
+    "No production deployment or actual Vercel header/routing checks."
+  ],
+  "sources": [
+    "https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax"
+  ],
+  "frozenAssets": [
+    {
+      "name": "index-79NpYb_8.js",
+      "sha256": "7d69e505b20651bfe6a7e7eac2feb830851323e9f5cfbe0ce8c594e0401e3304"
+    },
+    {
+      "name": "index-b8gQkA2B.css",
+      "sha256": "f764c8c20b52e312a12a86f7b37060c4b76531309f862821e1df93b7e7a20cf6"
+    }
+  ]
+}

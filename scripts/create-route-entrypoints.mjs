@@ -1,163 +1,52 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { createElement } from 'react';
+import { renderToString } from 'react-dom/server';
+import { createServer } from 'vite';
+import { locales, localeCodes } from '../src/marketing/locales.js';
 
-const distDir = join(process.cwd(), "dist");
-const indexPath = join(distDir, "index.html");
-const fallbackSiteUrl = "https://eulwangri-donghae-homepage.vercel.app";
-const configuredSiteUrl = String(process.env.VITE_SITE_URL || "").trim().replace(/\/+$/, "");
-const siteUrl = configuredSiteUrl || fallbackSiteUrl;
-
-const routeMeta = {
-  home: {
-    path: "/",
-    title: "을왕리 동해회조개구이 | 조개구이·회·해산물",
-    description:
-      "을왕리해수욕장 인근 동해회조개구이의 메뉴, 위치, 영업 정보, 네이버 플레이스 확인 링크를 한 번에 확인하세요.",
-    robots: "index, follow, max-image-preview:large",
-  },
-  menu: {
-    path: "/menu",
-    title: "메뉴 | 을왕리 동해회조개구이",
-    description:
-      "스페셜 세트, 가족 세트, 커플 세트, 조개+치즈가리비 세트 등 을왕리 동해회조개구이 대표 메뉴를 확인하세요.",
-    robots: "index, follow, max-image-preview:large",
-  },
-  store: {
-    path: "/store",
-    title: "매장소개 | 을왕리 동해회조개구이",
-    description:
-      "인천 중구 을왕로 62에 위치한 을왕리 동해회조개구이의 매장 정보, 영업시간, 주차·단체 이용 정보를 확인하세요.",
-    robots: "index, follow, max-image-preview:large",
-  },
-  reviews: {
-    path: "/reviews",
-    title: "리뷰 | 을왕리 동해회조개구이",
-    description:
-      "을왕리 동해회조개구이의 네이버 플레이스 리뷰 수와 최신 방문자 리뷰 확인 링크를 안내합니다.",
-    robots: "index, follow, max-image-preview:large",
-  },
-  location: {
-    path: "/location",
-    title: "찾아오시는길 | 을왕리 동해회조개구이",
-    description:
-      "을왕리 동해회조개구이 주소, 전화번호, 네이버 지도 길찾기 링크와 방문 전 확인 정보를 제공합니다.",
-    robots: "index, follow, max-image-preview:large",
-  },
-  reservation: {
-    path: "/reservation",
-    title: "이용안내 | 을왕리 동해회조개구이",
-    description:
-      "을왕리 동해회조개구이 예약 확인, 전화 문의, 영업시간, 주차·단체 이용 전 확인 사항을 정리했습니다.",
-    robots: "index, follow, max-image-preview:large",
-  },
-  admin: {
-    path: "/admin",
-    title: "리뷰 관리자 | 을왕리 동해회조개구이",
-    description: "을왕리 동해회조개구이 운영자 전용 리뷰 관리 화면입니다.",
-    robots: "noindex, noarchive",
-  },
-};
-
-const routes = ["menu", "store", "reviews", "location", "reservation", "admin"];
-
-const escapeAttribute = (value) =>
-  String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-
-const getCanonicalUrl = (path) => `${siteUrl}${path === "/" ? "/" : path}`;
-
-const replaceRequired = (html, pattern, replacement, label) => {
-  if (!pattern.test(html)) {
-    throw new Error(`Could not find ${label} in dist/index.html`);
+export const origin = 'https://taerynex.com';
+const escape = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+const ogLocales = { ko:'ko_KR', en:'en_US', ja:'ja_JP', 'zh-Hans':'zh_CN', 'zh-Hant':'zh_TW', es:'es_ES', pt:'pt_BR', fr:'fr_FR', de:'de_DE', id:'id_ID', th:'th_TH', vi:'vi_VN', hi:'hi_IN' };
+const template = await readFile('dist/index.html', 'utf8');
+if (!template.includes('<!-- marketing:metadata -->') || !template.includes('<div id="root"></div>')) throw new Error('Missing prerender template markers');
+const server = await createServer({ configFile: resolve('vite.config.js'), server: { middlewareMode: true }, appType: 'custom' });
+try {
+  const { default: App } = await server.ssrLoadModule('/src/App.jsx');
+  for (const locale of localeCodes) {
+    const c = locales[locale];
+    const canonical = `${origin}/app/${locale}`;
+    const metadata = [
+      `<meta name="description" content="${escape(c.description)}" />`,
+      '<meta name="robots" content="index,follow,max-image-preview:large" />',
+      `<link rel="canonical" href="${canonical}" />`,
+      ...localeCodes.map(code => `<link rel="alternate" hreflang="${code}" href="${origin}/app/${code}" />`),
+      `<link rel="alternate" hreflang="x-default" href="${origin}/app/en" />`,
+      '<meta property="og:type" content="website" />',
+      '<meta property="og:site_name" content="TAERYNEX" />',
+      `<meta property="og:locale" content="${ogLocales[locale]}" />`,
+      `<meta property="og:url" content="${canonical}" />`,
+      `<meta property="og:title" content="${escape(c.title)}" />`,
+      `<meta property="og:description" content="${escape(c.description)}" />`,
+      `<meta property="og:image" content="${origin}/brand/hero-landscape.webp" />`,
+      `<meta property="og:image:alt" content="${escape(c.eyebrow)}" />`,
+      '<meta name="twitter:card" content="summary_large_image" />',
+      `<meta name="twitter:title" content="${escape(c.title)}" />`,
+      `<meta name="twitter:description" content="${escape(c.description)}" />`,
+      `<meta name="twitter:image" content="${origin}/brand/hero-landscape.webp" />`,
+      '<link rel="preload" href="/brand/hero-landscape.webp" as="image" fetchpriority="high" />',
+    ].join('\n    ');
+    const body = renderToString(createElement(App, { locale }));
+    const html = template.replace('<html lang="ko">', `<html lang="${locale}">`).replace('<!-- marketing:metadata -->', metadata).replace(/<title>.*?<\/title>/, `<title>${escape(c.title)}</title>`).replace('<div id="root"></div>', () => `<div id="root">${body}</div>`);
+    const routes = [`app/${locale}.html`];
+    if (locale === 'ko') routes.push('index.html');
+    if (locale === 'en') routes.push('app/index.html');
+    for (const route of routes) { const path = resolve('dist', route); await mkdir(dirname(path), { recursive: true }); await writeFile(path, html); }
   }
-
-  return html.replace(pattern, replacement);
-};
-
-const applyRouteMeta = (html, meta) => {
-  const title = escapeAttribute(meta.title);
-  const description = escapeAttribute(meta.description);
-  const canonicalUrl = escapeAttribute(getCanonicalUrl(meta.path));
-  const robots = escapeAttribute(meta.robots);
-
-  let nextHtml = html;
-  nextHtml = replaceRequired(nextHtml, /<title>[\s\S]*?<\/title>/, `<title>${title}</title>`, "title");
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta\s+name="description"\s+content="[^"]*"\s*\/>/s,
-    `<meta name="description" content="${description}" />`,
-    "meta description",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta name="robots" content="[^"]*" \/>/,
-    `<meta name="robots" content="${robots}" />`,
-    "robots meta",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<link rel="canonical" href="[^"]*" \/>/,
-    `<link rel="canonical" href="${canonicalUrl}" />`,
-    "canonical link",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/>/s,
-    `<meta property="og:title" content="${title}" />`,
-    "og title",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/>/s,
-    `<meta property="og:description" content="${description}" />`,
-    "og description",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta property="og:url" content="[^"]*" \/>/,
-    `<meta property="og:url" content="${canonicalUrl}" />`,
-    "og url",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta\s+name="twitter:title"\s+content="[^"]*"\s*\/>/s,
-    `<meta name="twitter:title" content="${title}" />`,
-    "twitter title",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta\s+name="twitter:description"\s+content="[^"]*"\s*\/>/s,
-    `<meta name="twitter:description" content="${description}" />`,
-    "twitter description",
-  );
-  nextHtml = replaceRequired(
-    nextHtml,
-    /<meta name="twitter:url" content="[^"]*" \/>/,
-    `<meta name="twitter:url" content="${canonicalUrl}" />`,
-    "twitter url",
-  );
-
-  return nextHtml;
-};
-
-if (!existsSync(indexPath)) {
-  throw new Error("dist/index.html does not exist. Run vite build first.");
-}
-
-const baseHtml = readFileSync(indexPath, "utf8");
-writeFileSync(indexPath, applyRouteMeta(baseHtml, routeMeta.home));
-
-for (const route of routes) {
-  const routeHtml = applyRouteMeta(baseHtml, routeMeta[route]);
-  const htmlPath = join(distDir, `${route}.html`);
-  const nestedIndexPath = join(distDir, route, "index.html");
-
-  mkdirSync(dirname(nestedIndexPath), { recursive: true });
-  writeFileSync(htmlPath, routeHtml);
-  writeFileSync(nestedIndexPath, routeHtml);
-}
-
-console.log(`Created route entrypoints: ${routes.join(", ")}`);
+  const urls = localeCodes.map(code => `<url><loc>${origin}/app/${code}</loc>${localeCodes.map(other => `<xhtml:link rel="alternate" hreflang="${other}" href="${origin}/app/${other}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/app/en"/></url>`).join('\n');
+  await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`);
+  await writeFile('dist/robots.txt', `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
+  // Real unknown routes must not silently render a marketing or legacy admin page.
+  await writeFile('dist/404.html', '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><link rel="icon" href="/brand/app-icon.webp"><title>Page not found | TAERYNEX</title><body><main><h1>404 — Page not found</h1><p>TAERYNEX</p><a href="/app/en">English</a> · <a href="/app/ko" lang="ko">한국어</a></main></body></html>');
+  console.log(`Prerendered ${localeCodes.length} complete localized pages + Korean root + English /app/. Legal files untouched.`);
+} finally { await server.close(); }

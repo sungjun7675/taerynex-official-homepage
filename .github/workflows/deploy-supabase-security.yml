@@ -1,4 +1,4 @@
-name: Deploy Supabase security boundary
+name: LEGACY restaurant database deployment (disabled)
 
 on:
   workflow_dispatch:
@@ -8,6 +8,8 @@ permissions:
 
 jobs:
   deploy:
+    # Historical workflow only. Restore from the archived baseline with separate authorization.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     env:
       SUPABASE_PROJECT_REF: edfrlptpeuhjsgxdfwke

@@ -1,16 +1,22 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
-import "./styles/global.css";
+import { StrictMode } from 'react';
+import { createRoot, hydrateRoot } from 'react-dom/client';
+import App from './App.jsx';
+import { locales } from './marketing/locales.js';
+import './styles/marketing.css';
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+const locale = document.documentElement.lang;
+if (!Object.hasOwn(locales, locale)) throw new Error('Unsupported marketing locale');
+const root = document.getElementById('root');
+const app = <StrictMode><App locale={locale}/></StrictMode>;
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);
 
-if ("serviceWorker" in navigator && import.meta.env.PROD) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {});
-  });
-}
+// Update only the known legacy registration. New visitors acquire no worker.
+if ('serviceWorker' in navigator) window.addEventListener('load', async () => {
+  try {
+    for (const registration of await navigator.serviceWorker.getRegistrations()) {
+      const worker = registration.active || registration.waiting || registration.installing;
+      if (worker && new URL(worker.scriptURL).origin === location.origin && new URL(worker.scriptURL).pathname === '/sw.js' && registration.scope === `${location.origin}/`) await registration.update();
+    }
+  } catch { /* The browser retries retirement through its normal update lifecycle. */ }
+}, { once: true });

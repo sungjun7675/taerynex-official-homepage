@@ -2,6 +2,10 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: process.env.GITHUB_PAGES === "true" ? "/eulwangri-donghae-homepage/" : "/",
+  base: "/",
+  // This static marketing site needs no environment variables or backend client.
+  envDir: false,
+  envPrefix: "TAERYNEX_PUBLIC_UNUSED_",
+  appType: "mpa",
   plugins: [react()],
 });

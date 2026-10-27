@@ -5,6 +5,7 @@
 *.log
 *.err
 docs
+legacy
 supabase
 node_modules
 dist

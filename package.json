@@ -1,5 +1,5 @@
 {
-  "name": "eulwangri-donghae-homepage",
+  "name": "taerynex-official-homepage",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,17 +7,18 @@
     "dev": "vite",
     "build": "vite build && node scripts/create-route-entrypoints.mjs",
     "preview": "vite preview",
+    "preview:marketing": "node scripts/preview-marketing.mjs",
     "launch:check": "node scripts/launch-check.mjs",
     "security:check": "node scripts/security-check.mjs",
-    "security:supabase": "node scripts/supabase-security-check.mjs",
-    "security:headers": "node scripts/header-check.mjs"
+    "security:headers": "node scripts/header-check.mjs",
+    "test": "node --test tests/*.test.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.110.7",
-    "@vitejs/plugin-react": "^5.0.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tesseract.js": "^7.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
     "vite": "^7.0.0"
   }
 }
